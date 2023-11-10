@@ -1,6 +1,6 @@
 # Configure the AWS Provider
 provider "aws" {
-  region     = "eu-west-2"
+  region     = "ap-southeast-2"
   access_key = "AKIA37VKIT6HVFJRVN7S"
   secret_key = "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"
  }
@@ -20,7 +20,7 @@ resource "aws_subnet" "public-subnet-1" {
   vpc_id                  = aws_vpc.demovpc.id
   cidr_block              = var.subnet_cidr
   map_public_ip_on_launch = true
-  availability_zone       = "eu-west-2a"
+  availability_zone       = "ap-southeast-2c"
   tags = {
     Name = "Web Subnet 1"
   }
@@ -70,9 +70,9 @@ variable "subnet_cidr" {
 
 # Creating 1st EC2 instance in Public Subnet
 resource "aws_instance" "demoinstance" {
-  ami                         = "ami-0ff1c68c6e837b183"
+  ami                         = "ami-0f2967bce46537146"
   instance_type               = "t2.micro"
-  key_name                    = "reddy"
+  key_name                    = "q"
   vpc_security_group_ids      = ["${aws_security_group.demosg.id}"]
   subnet_id                   = aws_subnet.public-subnet-1.id
   associate_public_ip_address = true
